@@ -23,7 +23,7 @@ Route::post('/show', function (Request $request) {
         'start_date' => 'required|date',
         'end_date' => 'required|date|after:start_date',
     ]);
-    $data = file_get_contents('https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records.json');
+    $data = file_get_contents('https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records_03-19-2020.json');
     /**
      * Assignment: filter data in php
      * docs on data: http://data.cabq.gov/business/filmlocations/MetaData.pdf/view
