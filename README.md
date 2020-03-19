@@ -9,7 +9,7 @@ Upon completion of this and launching the project in an EC2 instance (per instru
 An AWS account will be created for you. With that AWS account: 
 
 1. Create a key pair
-2. Launch an EC2 instance
+2. Launch an EC2 instance in eu-central-1 region
 3. Login to that instance via ssh
 4. Clone your git repo
 5. Run the PHP app and serve requests
