@@ -23,12 +23,12 @@ Route::post('/show', function (Request $request) {
         'start_date' => 'required|date',
         'end_date' => 'required|date|after:start_date',
     ]);
-    $data = file_get_contents('https://coagisweb.cabq.gov/arcgis/rest/services/public/FilmLocations/MapServer/0/query?where=1%3D1&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=*&returnGeometry=true&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&f=pjson');
+    $data = file_get_contents('https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records.json');
     /**
-     * Assignment: filter data in php (not via end point filtering)
+     * Assignment: filter data in php
      * docs on data: http://data.cabq.gov/business/filmlocations/MetaData.pdf/view
      * 
-     * Filter data based on start and end date
+     * Filter data based on start and end date inputs (shoot date must fall between the start and end dates)
      * Adjust for your timezone
      * Filter out duplicate productions
      * Data should be returned as a json in this format:
