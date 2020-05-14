@@ -25,8 +25,6 @@ In this exercise, we're asking you to: **Create a filter for productions based o
 - Filters out duplicate productions
 - Returns JSON data
 
-> **We're aware that the ABQ Open Dataset has been timing out.** We have a download of the dataset from 03/19/2020. Of course, this dataset won't dynamically update or have any endpoint filtering. If you're having issues, please use this as an alternative: [https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records_03-19-2020.json](https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records_03-19-2020.json).
-
 ```
 {
     count: 1,
