@@ -10,12 +10,12 @@
         @if(isset($productions))
             <h1>{{$count}}</h1>
             <ul>
-                @foreach($productions as $item)
-                    <li>{{ $item->title }}</li>
-                    <li>{{ $item->type }}</li>
-                    @foreach($item->sites as $site)
-                        <li>{{ $item->name }}</li>
-                        <li>{{ $item->shoot_date }}</li>
+                @foreach($productions as $production)
+                    <li>{{ $production->title }}</li>
+                    <li>{{ $production->type }}</li>
+                    @foreach($production->sites as $site)
+                        <li>{{ $site->name }}</li>
+                        <li>{{ $site->shoot_date }}</li>
                     @endforeach
                 @endforeach
             </ul>
