@@ -63,12 +63,10 @@ Route::post('/show', function (Request $request) {
 
     $jsonData = collect(json_decode($data, true));
 
-    $filterData = $jsonData;//->whereBetween('shoot_date', [$startDate, $endDate]);
-//    dd($filterData);
+
     $productions = collect([]);//collect(new FilmLocationModel());
-    foreach ($filterData['features'] as $film)
+    foreach ($jsonData['features'] as $film)
     {
-//        $production = new FilmLocationModel();
         $production = collect([
             'title' => $film['attributes']['Title'],
             'type' => $film['attributes']['Type'],
@@ -78,12 +76,12 @@ Route::post('/show', function (Request $request) {
             ],
             'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
         ]);
-//        dd($production);
         $productions -> add($production);
     }
-//    dd($productions[5]);
-//    dd(count($productions));
-    $productionsGrouped = $productions->groupBy('h')
+    
+    $filterData = $productions->whereBetween('shoot_date', [$startDate, $endDate]);
+
+    $productionsGrouped = $filterData->groupBy('h')
         ->map(function($groupedData) {
             return (object) [
                 'title' => $groupedData[0]['title'],
