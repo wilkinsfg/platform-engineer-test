@@ -8,20 +8,15 @@
     </div>
     <div>
         @if(isset($productions))
-
                 @foreach($productions as $production)
                     <h1>{{ $production->title }}</h1>
+                    <h4>Type: {{ $production->type }}</h4>
                     <ul>
-                        <li>{{ $production->type }}</li>
                         @foreach($production->sites as $site)
-                            <ul>
-                                <li>{{ $site->name }}</li>
-                                <li>{{ $site->shoot_date }}</li>
-                            </ul>
+                            <li>Site: {{ $site->name }} - Shoot Date:{{ $site->shoot_date }}</li>
                         @endforeach
                     </ul>
                 @endforeach
-
         @endif
     </div>
 @endsection
