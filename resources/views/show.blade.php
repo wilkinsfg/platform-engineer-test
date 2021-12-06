@@ -8,18 +8,20 @@
     </div>
     <div>
         @if(isset($productions))
-            <ul>
+
                 @foreach($productions as $production)
-                    <li>{{ $production->title }}</li>
-                    <li>{{ $production->type }}</li>
-                    @foreach($production->sites as $site)
-                        <ul>
-                            <li>{{ $site->name }}</li>
-                            <li>{{ (\Carbon\Carbon::createFromTimestampMs($site->shoot_date)) }}</li>
-                        </ul>
-                    @endforeach
+                    <h1>{{ $production->title }}</h1>
+                    <ul>
+                        <li>{{ $production->type }}</li>
+                        @foreach($production->sites as $site)
+                            <ul>
+                                <li>{{ $site->name }}</li>
+                                <li>{{ (\Carbon\Carbon::createFromTimestampMs($site->shoot_date)) }}</li>
+                            </ul>
+                        @endforeach
+                    </ul>
                 @endforeach
-            </ul>
+
         @endif
     </div>
 @endsection

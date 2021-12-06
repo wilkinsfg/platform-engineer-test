@@ -22,14 +22,6 @@
                 <div class="alert">{{ $message }}</div>
             @enderror
         </div>
-        <input type="hidden" name="tz" id="tz">
         <input type="submit" value="Find Movies" class="button"/>
     </form>
 @endsection
-@push('js')
-    <script>
-
-            document.getElementById('tz').val(moment.tz.guess())
-        
-    </script>
-@endpush
