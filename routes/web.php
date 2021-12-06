@@ -30,6 +30,7 @@ Route::post('/show', function (Request $request) {
 //    dd($request->start_date);
 //    dd($startDate);
     $endDate = Carbon::parse($request->end_date);
+    $tz = $request->tz;
 
     $data = file_get_contents('https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records_03-19-2020.json');
 
@@ -74,7 +75,7 @@ Route::post('/show', function (Request $request) {
             'type' => $film['attributes']['Type'],
             'sites' => [
                 'name' => $film['attributes']['Site'],
-                'shoot_date' => $film['attributes']['ShootDate']
+                'shoot_date' => Carbon::createFromTimestampMs($film['attributes']['ShootDate'], tz)
             ],
             'shootDate' => Carbon::createFromTimestampMs($film['attributes']['ShootDate']),
             'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
