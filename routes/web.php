@@ -58,17 +58,20 @@ Route::post('/show', function (Request $request) {
 
     $jsonData = json_decode($data);
 
-    $productions = collect();
+    $productions = array();//collect(new FilmLocationModel());
     foreach ($jsonData['features'] as $film)
     {
-        $production = new FilmLocationModel();
-        $production->title = $film['attributes']['Title'];
-        $production->type = $film['attributes']['Type'];
-        $production->sites = [
-            'name' => $film['attributes']['Site'],
-            'shoot_date' => $film['attributes']['ShootDate']
-        ];
-        $this->h = md5(str_replace(' ', '', strtolower(trim($this->title))));
+//        $production = new FilmLocationModel();
+        $production = array(
+            'title' => $film['attributes']['Title'],
+            'type' => $film['attributes']['Type'],
+            'sites' => [
+                'name' => $film['attributes']['Site'],
+                'shoot_date' => $film['attributes']['ShootDate']
+            ],
+            'h' => md5(str_replace(' ', '', strtolower(trim($this->title))))
+        );
+
         $productions->push($production);
     }
 
