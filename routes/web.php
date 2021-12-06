@@ -43,7 +43,7 @@ Route::post('/show', function (Request $request) {
             'type' => $film['attributes']['Type'],
             'sites' => [
                 'name' => $film['attributes']['Site'],
-                'shoot_date' => Carbon::createFromTimestampMs($film['attributes']['ShootDate'])
+                'shoot_date' => Carbon::createFromTimestampMs($film['attributes']['ShootDate'])->utcOffset($tz)
             ],
             'shootDate' => Carbon::createFromTimestampMs($film['attributes']['ShootDate']),
             'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
