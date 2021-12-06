@@ -2,6 +2,7 @@
 
 use App\Models\FilmLocationModel;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 
 /*
@@ -58,11 +59,11 @@ Route::post('/show', function (Request $request) {
 
     $jsonData = json_decode($data, true);
 
-    $productions = (object) null;//collect(new FilmLocationModel());
+    $productions = collect([]);//collect(new FilmLocationModel());
     foreach ($jsonData['features'] as $film)
     {
 //        $production = new FilmLocationModel();
-        $production = array(
+        $production = collect([
             'title' => $film['attributes']['Title'],
             'type' => $film['attributes']['Type'],
             'sites' => [
@@ -70,9 +71,9 @@ Route::post('/show', function (Request $request) {
                 'shoot_date' => $film['attributes']['ShootDate']
             ],
             'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
-        );
-
-        $productions->push($production);
+        ]);
+        dd($production);
+        $productions -> add(new $production);
     }
 
     $productions = $productions->groupBy('h');
