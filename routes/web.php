@@ -84,8 +84,8 @@ Route::post('/show', function (Request $request) {
                 'type' => $groupedData[0]['type'],
                 'sites' => $groupedData->map(function($site) {
                     return (object)[
-                        'name' => $site['name'],
-                        'shoot_date' => $site['shoot_date']
+                        'name' => $site['sites']['name'],
+                        'shoot_date' => $site['sites']['shoot_date']
                     ];
                 })
             ];
