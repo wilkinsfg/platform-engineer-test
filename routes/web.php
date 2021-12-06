@@ -69,7 +69,7 @@ Route::post('/show', function (Request $request) {
                 'name' => $film['attributes']['Site'],
                 'shoot_date' => $film['attributes']['ShootDate']
             ],
-            'h' => md5(str_replace(' ', '', strtolower(trim($this->title))))
+            'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
         );
 
         $productions->push($production);
