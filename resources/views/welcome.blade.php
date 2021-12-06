@@ -28,9 +28,8 @@
 @endsection
 @push('js')
     <script>
-        $(function () {
-            // guess user timezone
-            $('#tz').val(moment.tz.guess())
-        })
+
+            document.getElementById('tz').val(moment.tz.guess())
+        
     </script>
 @endpush
