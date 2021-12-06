@@ -73,7 +73,7 @@ Route::post('/show', function (Request $request) {
             'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
         ]);
 //        dd($production);
-        $productions -> add(new $production);
+        $productions -> add($production);
     }
     dd($productions[5]);
 //    dd($productions);
