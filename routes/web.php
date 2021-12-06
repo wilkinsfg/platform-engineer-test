@@ -26,44 +26,12 @@ Route::post('/show', function (Request $request) {
         'start_date' => 'required|date',
         'end_date' => 'required|date|after:start_date',
     ]);
+
     $startDate = Carbon::parse($request->start_date);
-//    dd($request->start_date);
-//    dd($startDate);
     $endDate = Carbon::parse($request->end_date);
     $tz = $request->tz;
 
     $data = file_get_contents('https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records_03-19-2020.json');
-
-
-    /**
-     * Assignment: filter data in php
-     * docs on data: http://data.cabq.gov/business/filmlocations/MetaData.pdf/view
-     *
-     * Filter data based on start and end date inputs (shoot date must fall between the start and end dates)
-     * Adjust for your timezone
-     * Filter out duplicate productions
-     * Data should be returned as a json in this format:
-     * {
-     *      count: 1,
-     *      productions: [
-     *          {
-     *              title: "production name",
-     *              type: "movie, tv or other",
-     *              sites: [
-     *                  {
-     *                      name: "site name",
-     *                      shoot_date: "Month Date, Year"
-     *                  }
-     *              ]
-     *          }
-     *      ]
-     * }
-     *
-     * On the front end (show.blade.php):
-     * Display all data to user (just a bulleted list is fine)
-     * Display date in a human readable format in your timezone
-     */
-
     $jsonData = collect(json_decode($data, true));
 
 
@@ -100,6 +68,6 @@ Route::post('/show', function (Request $request) {
             ];
         })
         ->all();
-   // dd($productionsGrouped);
+
     return view('show', ['count'=>  count($productionsGrouped),'productions' => array_values($productionsGrouped)]);
 });

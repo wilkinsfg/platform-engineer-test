@@ -22,6 +22,18 @@
                 <div class="alert">{{ $message }}</div>
             @enderror
         </div>
+        <div class="input-group">
+            <input type="hidden" name="tz" id="tz">
+        </div>
         <input type="submit" value="Find Movies" class="button"/>
     </form>
 @endsection
+@push('js')
+    <script>
+
+        const d = new Date();
+        let timeZone = d.getTimezoneOffset();
+        document.getElementById("tz").value = timeZone;
+
+    </script>
+@endpush
