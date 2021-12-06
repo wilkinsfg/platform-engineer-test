@@ -72,14 +72,15 @@ Route::post('/show', function (Request $request) {
             'type' => $film['attributes']['Type'],
             'sites' => [
                 'name' => $film['attributes']['Site'],
-                'shoot_date' => Carbon::createFromTimestampMs($film['attributes']['ShootDate'])
+                'shoot_date' => $film['attributes']['ShootDate']
             ],
+            'shootDate' => Carbon::createFromTimestampMs($film['attributes']['ShootDate']),
             'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
         ]);
         $productions -> add($production);
     }
-    
-    $filterData = $productions->whereBetween('shoot_date', [$startDate, $endDate]);
+
+    $filterData = $productions->whereBetween('shootDate', [$startDate, $endDate]);
 
     $productionsGrouped = $filterData->groupBy('h')
         ->map(function($groupedData) {
