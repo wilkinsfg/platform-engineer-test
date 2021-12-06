@@ -82,10 +82,10 @@ Route::post('/show', function (Request $request) {
             return (object) [
                 'title' => $groupedData[0]['title'],
                 'type' => $groupedData[0]['type'],
-                'sites' => $groupedData->map(function($item) {
+                'sites' => $groupedData->map(function($site) {
                     return (object)[
-                        'name' => $item[0]['site'],
-                        'shoot_date' => $item[0]['shoot_date']
+                        'name' => $site['name'],
+                        'shoot_date' => $site['shoot_date']
                     ];
                 })
             ];
