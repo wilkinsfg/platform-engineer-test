@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Services;
+use App\FilmLocationModel;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
+
+class FilmLocationService
+{
+    public function getFilmLocationByDateRange($startDate, $endDate) : Array
+    {
+        $data = file_get_contents('https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records_03-19-2020.json');
+        $jsonData = json_decode($data);
+
+        $productions = collect(new FilmLocationModel());
+        foreach ($jsonData['features'] as $film)
+        {
+            $production = new FilmLocationModel();
+            $production->title = $film['attributes']['Title'];
+            $production->type = $film['attributes']['Type'];
+            $production->sites = [
+                'name' => $film['attributes']['Site'],
+                'shoot_date' => $film['attributes']['ShootDate']
+            ];
+            $this->h = md5(str_replace(' ', '', strtolower(trim($this->title))));
+            $productions->push($production);
+        }
+
+        $productions = $productions->groupBy('h');
+
+        /*$groupedCollection = $this->getLocationsByShootDate($startDate, $endDate)->groupBy('h')->map(function($sites, $titleHash) {
+                return (object) [
+                    'title' => $sites[0]->title,
+                    'type' => $sites[0]->type,
+                    'sites' => $sites->map(function($item) use($timezone) {
+                        return (object)[
+                            'name' => $item->site,
+                            'shoot_date' => $item->shoot_date->setTimezone($timezone)->toFormattedDateString()
+                        ];
+                    })
+                ];
+            })
+            ->all();*/
+
+        return array_values($productions);
+    }
+}

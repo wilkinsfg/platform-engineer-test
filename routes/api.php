@@ -14,11 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-//Route::get('film-location', 'FilmLocationController@index');
-//Route::get('film-location/{request}', 'FilmLocationController@show');
-Route::apiResources([
-    'filmlocation' => 'FilmLocationController',
-]);
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::get('/filmlocation/', 'FilmLocationController@show');

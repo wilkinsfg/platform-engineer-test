@@ -1,0 +1,16 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class FilmLocationModel extends Model
+{
+    protected $fields = [
+        'title',
+        'type',
+        'site',
+        'shoot_date',
+        'h'
+    ];
+}
