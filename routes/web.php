@@ -72,11 +72,11 @@ Route::post('/show', function (Request $request) {
             ],
             'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
         ]);
-//        dd($production);
+        dd($production);
         $productions -> add(new $production);
     }
-
+    dd($productions);
     $productionsGrouped = array_values($productions->groupBy('h')->all());
-    dd($productionsGrouped);
+//    dd($productionsGrouped);
     return view('show', ['count'=>  count($productionsGrouped),'productions' => $productionsGrouped]);
 });
