@@ -56,9 +56,9 @@ Route::post('/show', function (Request $request) {
      * Display date in a human readable format in your timezone
      */
 
-    $jsonData = json_decode($data);
+    $jsonData = json_decode($data, true);
 
-    //$productions = (object) null;
+    $productions = array();//collect(new FilmLocationModel());
     foreach ($jsonData['features'] as $film)
     {
 //        $production = new FilmLocationModel();
@@ -71,11 +71,10 @@ Route::post('/show', function (Request $request) {
             ],
             'h' => md5(str_replace(' ', '', strtolower(trim($this->title))))
         );
-      dd($production);
-      //  $productions->push($production);
+
+        $productions->push($production);
     }
 
-    //$productions = $productions->groupBy('h');
-//    return view('show', ['count'=>  count($productions),'productions' => $productions]);
-    return view('show', ['count'=>  count($jsonData['features']),'productions' => $jsonData['features']]);
+    $productions = $productions->groupBy('h');
+    return view('show', ['count'=>  count($productions),'productions' => $productions]);
 });
