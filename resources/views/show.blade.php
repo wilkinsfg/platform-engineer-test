@@ -13,7 +13,7 @@
                     <h4>Type: {{ $production->type }}</h4>
                     <ul>
                         @foreach($production->sites as $site)
-                            <li>Site: {{ $site->name }} - Shoot Date:{{ $site->shoot_date }}</li>
+                            <li><strong>Site:</strong> {{ $site->name }} - <strong>Shoot Date:</strong> {{ $site->shoot_date }}</li>
                         @endforeach
                     </ul>
                 @endforeach
