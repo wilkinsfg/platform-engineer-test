@@ -7,6 +7,13 @@
         Productions:
     </div>
     <div>
-        <h1></h1>
+        @if(isset($productions))
+            {{$count}}
+            <ul>
+                @foreach($productions as $item)
+                    <li>{{ $item['Title'] }}</li>
+                @endforeach
+            </ul>
+        @endif
     </div>
 @endsection
