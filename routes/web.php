@@ -77,7 +77,7 @@ Route::post('/show', function (Request $request) {
     }
 //    dd($productions[5]);
 //    dd(count($productions));
-    $productionsGrouped = array_values($productions->groupBy('h')
+    $productionsGrouped = $productions->groupBy('h')
         ->map(function($groupedData) {
             return (object) [
                 'title' => $groupedData[0]['title'],
@@ -90,7 +90,7 @@ Route::post('/show', function (Request $request) {
                 })
             ];
         })
-        ->all());
+        ->all();
    // dd($productionsGrouped);
-    return view('show', ['count'=>  count($productionsGrouped),'productions' => $productionsGrouped]);
+    return view('show', ['count'=>  count($productionsGrouped),'productions' => array_values($productionsGrouped)]);
 });
