@@ -15,7 +15,7 @@
                     @foreach($production->sites as $site)
                         <ul>
                             <li>{{ $site->name }}</li>
-                            <li>{{ (\Carbon\Carbon::createFromTimestampMs($site->shoot_date)) }}</li>
+                            <li>{{ (\Carbon\Carbon::createFromTimestampMs($site->shoot_date, $user->timezone)) }}</li>
                         </ul>
                     @endforeach
                 @endforeach
