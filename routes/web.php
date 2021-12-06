@@ -26,8 +26,10 @@ Route::post('/show', function (Request $request) {
         'start_date' => 'required|date',
         'end_date' => 'required|date|after:start_date',
     ]);
-    $startDate = Carbon::createFromTimestampMs($request->start_date);
-    $endDate = Carbon::createFromTimestampMs($request->end_date);
+    $startDate = Carbon::parse($request->start_date);
+    dd($request->start_date);
+    dd($startDate);
+    $endDate = Carbon::parse($request->end_date);
 
     $data = file_get_contents('https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records_03-19-2020.json');
 
