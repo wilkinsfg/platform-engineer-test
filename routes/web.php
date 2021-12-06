@@ -25,6 +25,9 @@ Route::post('/show', function (Request $request) {
         'start_date' => 'required|date',
         'end_date' => 'required|date|after:start_date',
     ]);
+    $startDate = Carbon::parse($request->start_date);
+    $endDate = Carbon::parse($request->end_date);
+
     $data = file_get_contents('https://c2t-cabq-open-data.s3.amazonaws.com/film-locations-json-all-records_03-19-2020.json');
 
 
@@ -57,10 +60,12 @@ Route::post('/show', function (Request $request) {
      * Display date in a human readable format in your timezone
      */
 
-    $jsonData = json_decode($data, true);
+    $jsonData = collect(json_decode($data, true));
+
+    $filterData = $jsonData->whereBetween('shoot_date', [$startDate, $endDate]);
 
     $productions = collect([]);//collect(new FilmLocationModel());
-    foreach ($jsonData['features'] as $film)
+    foreach ($filterData['features'] as $film)
     {
 //        $production = new FilmLocationModel();
         $production = collect([
