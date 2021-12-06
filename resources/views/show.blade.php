@@ -8,10 +8,15 @@
     </div>
     <div>
         @if(isset($productions))
-            {{$count}}
+            <h1>{{$count}}</h1>
             <ul>
                 @foreach($productions as $item)
                     <li>{{ $item->title }}</li>
+                    <li>{{ $item->type }}</li>
+                    @foreach($item->sites as $site)
+                        <li>{{ $item->name }}</li>
+                        <li>{{ $item->shoot_date }}</li>
+                    @endforeach
                 @endforeach
             </ul>
         @endif
