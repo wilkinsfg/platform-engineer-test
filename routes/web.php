@@ -64,7 +64,7 @@ Route::post('/show', function (Request $request) {
     $jsonData = collect(json_decode($data, true));
 
     $filterData = $jsonData->whereBetween('shoot_date', [$startDate, $endDate]);
-
+    dd($filterData);
     $productions = collect([]);//collect(new FilmLocationModel());
     foreach ($filterData['features'] as $film)
     {
