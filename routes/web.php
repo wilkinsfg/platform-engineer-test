@@ -80,12 +80,12 @@ Route::post('/show', function (Request $request) {
     $productionsGrouped = array_values($productions->groupBy('h')
         ->map(function($groupedData) {
             return (object) [
-                'title' => $groupedData[0]->title,
-                'type' => $groupedData[0]->type,
+                'title' => $groupedData[0]['title'],
+                'type' => $groupedData[0]['type'],
                 'sites' => $groupedData->map(function($sites) {
                     return (object)[
-                        'name' => $sites->site,
-                        'shoot_date' => $sites->shoot_date
+                        'name' => $sites['site'],
+                        'shoot_date' => $sites['shoot_date']
                     ];
                 })
             ];
