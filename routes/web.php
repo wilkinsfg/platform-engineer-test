@@ -58,7 +58,7 @@ Route::post('/show', function (Request $request) {
 
     $jsonData = json_decode($data);
 
-    $productions = (object) null;
+    //$productions = (object) null;
     foreach ($jsonData['features'] as $film)
     {
 //        $production = new FilmLocationModel();
@@ -71,10 +71,11 @@ Route::post('/show', function (Request $request) {
             ],
             'h' => md5(str_replace(' ', '', strtolower(trim($this->title))))
         );
-
-        $productions->push($production);
+      dd($production);
+      //  $productions->push($production);
     }
 
-    $productions = $productions->groupBy('h');
-    return view('show', ['count'=>  count($productions),'productions' => $productions]);
+    //$productions = $productions->groupBy('h');
+//    return view('show', ['count'=>  count($productions),'productions' => $productions]);
+    return view('show', ['count'=>  count($jsonData['features']),'productions' => $jsonData['features']]);
 });
