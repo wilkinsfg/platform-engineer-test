@@ -66,7 +66,7 @@ Route::post('/show', function (Request $request) {
     $jsonData = collect(json_decode($data, true));
 
 
-    $productions = collect([]);//collect(new FilmLocationModel());
+    $productions = collect([]);
     foreach ($jsonData['features'] as $film)
     {
         $production = collect([
@@ -79,12 +79,12 @@ Route::post('/show', function (Request $request) {
             'shootDate' => Carbon::createFromTimestampMs($film['attributes']['ShootDate']),
             'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
         ]);
-        dd(Carbon::createFromTimestampMs($film['attributes']['ShootDate']));
+
         $productions -> add($production);
     }
 
     $filterData = $productions->whereBetween('shootDate', [$startDate, $endDate]);
-
+    
     $productionsGrouped = $filterData->groupBy('h')
         ->map(function($groupedData) {
             return (object) [
