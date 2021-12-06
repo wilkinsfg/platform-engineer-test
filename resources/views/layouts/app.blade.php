@@ -20,12 +20,11 @@
                 color: #67676F;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
                 margin: 0;
             }
 
             .full-height {
-                height: 100vh;
+                height: 100%;
             }
 
             .flex-center {
@@ -34,7 +33,7 @@
             }
 
             .content {
-                max-width: 500px;
+                max-width: 800px;
                 margin: 0 auto;
             }
 
