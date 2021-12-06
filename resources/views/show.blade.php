@@ -11,7 +11,7 @@
             {{$count}}
             <ul>
                 @foreach($productions as $item)
-                    <li>{{ $item['title'] }}</li>
+                    <li>{{ $item->title }}</li>
                 @endforeach
             </ul>
         @endif
