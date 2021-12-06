@@ -9,16 +9,18 @@
     <div>
         @if(isset($productions))
             <h1>{{$count}}</h1>
-            <ul>
+            <ol>
                 @foreach($productions as $production)
                     <li>{{ $production->title }}</li>
                     <li>{{ $production->type }}</li>
                     @foreach($production->sites as $site)
-                        <li>{{ $site->name }}</li>
-                        <li>{{ $site->shoot_date }}</li>
+                        <ul>
+                            <li>{{ $site->name }}</li>
+                            <li>{{ $site->shoot_date }}</li>
+                        </ul>
                     @endforeach
                 @endforeach
-            </ul>
+            </ol>
         @endif
     </div>
 @endsection
