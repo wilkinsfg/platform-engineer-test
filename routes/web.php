@@ -27,7 +27,7 @@ Route::post('/show', function (Request $request) {
         'end_date' => 'required|date|after:start_date',
     ]);
     $startDate = Carbon::parse($request->start_date);
-    dd($request->start_date);
+//    dd($request->start_date);
     dd($startDate);
     $endDate = Carbon::parse($request->end_date);
 
@@ -79,6 +79,7 @@ Route::post('/show', function (Request $request) {
             'shootDate' => Carbon::createFromTimestampMs($film['attributes']['ShootDate']),
             'h' => md5(str_replace(' ', '', strtolower(trim($film['attributes']['Title']))))
         ]);
+        dd(Carbon::createFromTimestampMs($film['attributes']['ShootDate']));
         $productions -> add($production);
     }
 
