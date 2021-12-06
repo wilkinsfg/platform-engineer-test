@@ -26,7 +26,7 @@ Route::post('/show', function (Request $request) {
         'start_date' => 'required|date',
         'end_date' => 'required|date|after:start_date',
     ]);
-
+    $tz = 0;
     $startDate = Carbon::parse($request->start_date);
     $endDate = Carbon::parse($request->end_date);
     $tz = $request->tz;

@@ -28,7 +28,7 @@
         <input type="submit" value="Find Movies" class="button"/>
     </form>
 @endsection
-@push('js')
+@push('scripts')
     <script>
 
         const d = new Date();

@@ -69,10 +69,11 @@
         </style>
     </head>
     <body>
-    <div class="flex-center full-height">
+        <div class="flex-center full-height">
             <div class="content">
                 @yield('content')
             </div>
         </div>
+        @stack('scripts')
     </body>
 </html>
