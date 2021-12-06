@@ -58,7 +58,7 @@ Route::post('/show', function (Request $request) {
 
     $jsonData = json_decode($data);
 
-    $productions = collect(new FilmLocationModel());
+    $productions = collect();
     foreach ($jsonData['features'] as $film)
     {
         $production = new FilmLocationModel();
