@@ -91,6 +91,6 @@ Route::post('/show', function (Request $request) {
             ];
         })
         ->all());
-    dd($productionsGrouped);
+   // dd($productionsGrouped);
     return view('show', ['count'=>  count($productionsGrouped),'productions' => $productionsGrouped]);
 });
