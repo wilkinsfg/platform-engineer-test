@@ -84,7 +84,7 @@ Route::post('/show', function (Request $request) {
     }
 
     $filterData = $productions->whereBetween('shootDate', [$startDate, $endDate]);
-    
+
     $productionsGrouped = $filterData->groupBy('h')
         ->map(function($groupedData) {
             return (object) [

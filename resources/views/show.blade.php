@@ -4,12 +4,11 @@
 
 @section('content')
     <div class="step">
-        Productions:
+        Productions ({{$count}}):
     </div>
     <div>
         @if(isset($productions))
-            <h1>{{$count}}</h1>
-            <ol>
+            <ul>
                 @foreach($productions as $production)
                     <li>{{ $production->title }}</li>
                     <li>{{ $production->type }}</li>
@@ -20,7 +19,7 @@
                         </ul>
                     @endforeach
                 @endforeach
-            </ol>
+            </ul>
         @endif
     </div>
 @endsection
