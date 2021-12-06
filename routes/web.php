@@ -77,5 +77,6 @@ Route::post('/show', function (Request $request) {
     }
 
     $productions = $productions->groupBy('h');
+    dd($productions);
     return view('show', ['count'=>  count($productions),'productions' => $productions]);
 });
