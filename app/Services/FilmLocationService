@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services;
-use App\FilmLocationModel;
+use App\Models\FilmLocationModel;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\FilmLocationModel;
+use App\Models\FilmLocationModel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
