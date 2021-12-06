@@ -77,7 +77,20 @@ Route::post('/show', function (Request $request) {
     }
 //    dd($productions[5]);
 //    dd(count($productions));
-    $productionsGrouped = array_values($productions->groupBy('h')->all());
+    $productionsGrouped = array_values($productions->groupBy('h')
+        ->map(function($groupedData) {
+            return (object) [
+                'title' => $groupedData[0]->title,
+                'type' => $groupedData[0]->type,
+                'sites' => $groupedData->map(function($sites) {
+                    return (object)[
+                        'name' => $sites->site,
+                        'shoot_date' => $sites->shoot_date
+                    ];
+                })
+            ];
+        })
+        ->all());
     dd($productionsGrouped);
     return view('show', ['count'=>  count($productionsGrouped),'productions' => $productionsGrouped]);
 });
